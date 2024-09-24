@@ -5,6 +5,8 @@
 #include "Engine/Classes/Camera/CameraComponent.h"
 #include "SnakeBase.h"
 #include "Components/InputComponent.h"
+#include "Kismet/GameplayStatics.h"
+
 
 
 
@@ -26,8 +28,10 @@ void APlayerPawnBase::BeginPlay()
 	SetActorRotation(FRotator(-90, 0, 0));
 	CreateSnakeActor();
 
-	/*FInputModeGameOnly InputMode;
-	UGameplayStatistics::GetPlayerController(GerWorld(), 0)->SetInputMode(InputMode);*/
+	FInputModeGameOnly InputMode;
+	PlayerController->SetInputMode(InputMode);
+	UGameplayStatistics::GetPlayerController(GerWorld(), 0)->SetInputMode(InputMode);
+
 	
 }
 
