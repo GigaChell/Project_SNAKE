@@ -4,7 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Interactable.h"   
 #include "SnakeBase.generated.h"
+
 
 
 class ASnakeElementBase;
@@ -19,7 +21,7 @@ enum class EMovementDirection
 };
 
 UCLASS()
-class PROJECT_SNAKE01_API ASnakeBase : public AActor
+class PROJECT_SNAKE01_API ASnakeBase : public AActor, public IInteractable
 {
 	GENERATED_BODY()
 	
@@ -55,8 +57,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Move();
 
-	//-------------------------модуль 21.3-------------------------
+	
 	UFUNCTION(BlueprintCallable)
-	void SnakeElementOverlap(ASnakeElementBase*OverlappedElement,AActor* Other);
+	void SnakeElementOverlap(ASnakeElementBase* OverlappedElement,AActor* Other);
 
 };

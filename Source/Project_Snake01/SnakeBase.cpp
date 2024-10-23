@@ -35,7 +35,7 @@ void ASnakeBase::AddSnakeElement(int ElementsNum )
 		FVector NewLocation(SnakeElements.Num()*ElementSize, 0, 0);
 		FTransform NewTransform(NewLocation);
 		ASnakeElementBase* NewSnakeElem = GetWorld()->SpawnActor<ASnakeElementBase>(SnakeElementClass, NewTransform);
-		NewSnakeElem->SnakeOwner = this;   //-------------------------модуль 21.3-------------------------
+		NewSnakeElem->SnakeOwner = this;   
 		int32 ElemIndex = SnakeElements.Add(NewSnakeElem);
 		if (ElemIndex == 0)
 		{
@@ -66,7 +66,7 @@ void ASnakeBase::Move()
 		break;
 	}
 
-	//AddActorWorldOffset(MovementVector);
+	
 	SnakeElements[0]->ToggleCollision();
 
 	for (int i = SnakeElements.Num() - 1; i > 0; i--)
@@ -81,7 +81,7 @@ void ASnakeBase::Move()
 	SnakeElements[0]->ToggleCollision();
 }
 
-//-------------------------модуль 21.3-------------------------
+
 
 void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActor* Other)
 {
@@ -91,6 +91,7 @@ void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActo
 		SnakeElements.Find(OverlappedElement, ElemIndex);
 		bool bIsFirst = ElemIndex == 0;
 		IInteractable* InteractableInterface = Cast<IInteractable>(Other);
+		UE_LOG(LogTemp, Warning, TEXT("OVERLAP WIS %s"),*Other->GetName());
 		if (InteractableInterface)
 		{
 			InteractableInterface->Interact(this,  bIsFirst);

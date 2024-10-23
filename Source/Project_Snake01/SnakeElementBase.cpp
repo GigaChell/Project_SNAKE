@@ -3,28 +3,29 @@
 
 #include "SnakeElementBase.h"
 #include "Engine/Classes/Components/StaticMeshComponent.h"
-#include "SnakeBase.h"  //-------------------------модуль 21.3-------------------------
+#include "SnakeBase.h" 
 
-// Sets default values
+
+
 ASnakeElementBase::ASnakeElementBase()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+ 	
 	PrimaryActorTick.bCanEverTick = true;
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
-	MeshComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	MeshComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly); 
 	MeshComponent->SetCollisionResponseToAllChannels(ECR_Overlap);
 }
 
-// Called when the game starts or when spawned
+
 void ASnakeElementBase::BeginPlay()
 {
 	
 	Super::BeginPlay();
-	//MeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ASnakeElementBase::HandleBeginOverlap);
+	
 	
 }
 
-// Called every frame
+
 void ASnakeElementBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -37,11 +38,11 @@ void ASnakeElementBase::Tick(float DeltaTime)
 
 void ASnakeElementBase::SetFirstElementType_Implementation()
 {
-	MeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ASnakeElementBase::HandleBeginOverlap);
+	MeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ASnakeElementBase::HandleBeginOverlap); 
 }
-//-------------------------модуль 21.3-------------------------
 
-void ASnakeElementBase::Interact(AActor* Interactor, bool bIshead)
+
+void ASnakeElementBase::Interact(AActor* Interactor, bool bIsHead)
 {
 	auto Snake = Cast<ASnakeBase>(Interactor);
 	if (IsValid(Snake))
@@ -51,11 +52,11 @@ void ASnakeElementBase::Interact(AActor* Interactor, bool bIshead)
 }
 
 void ASnakeElementBase::HandleBeginOverlap(UPrimitiveComponent* OverlappedComponent,
-	AActor* OtherActor,
-	UPrimitiveComponent* OtherComp,
-	int32 OtherBodyIndex,
-	bool bFromSweep,
-	const FHitResult& SweepResult)
+											AActor* OtherActor,
+											UPrimitiveComponent* OtherComp,
+											int32 OtherBodyIndex,
+											bool bFromSweep,
+											const FHitResult& SweepResult)
 {
 	if (IsValid(SnakeOwner))
 	{

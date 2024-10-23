@@ -22,11 +22,6 @@ void APlayerPawnBase::BeginPlay()
 	SetActorRotation(FRotator(-90, 0, 0));
 	CreateSnakeActor();
 
-	/*FInputModeGameOnly InputMode;
-	PlayerController->SetInputMode(InputMode);
-	UGameplayStatistics::GetPlayerController(GerWorld(), 0)->SetInputMode(InputMode);*/
-
-	
 }
 
 void APlayerPawnBase::Tick(float DeltaTime)
@@ -35,7 +30,7 @@ void APlayerPawnBase::Tick(float DeltaTime)
 
 }
 
-// Called to bind functionality to input
+
 void APlayerPawnBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);

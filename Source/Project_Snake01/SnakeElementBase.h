@@ -1,17 +1,16 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Interactable.h"   //-------------------------модуль 21.3-------------------------
+#include "Interactable.h"  
 #include "SnakeElementBase.generated.h"
 
 class UStaticMeshComponent;
 class ASnakeBase;
 
 UCLASS()
-class PROJECT_SNAKE01_API ASnakeElementBase : public AActor, public IInteractable  //-------------------------модуль 21.3-------------------------
+class PROJECT_SNAKE01_API ASnakeElementBase : public AActor, public IInteractable  
 {
 	GENERATED_BODY()
 	
@@ -36,15 +35,17 @@ public:
 	void SetFirstElementType();
 	void SetFirstElementType_Implementation();
 
-	virtual void Interact(AActor* Interactor, bool bIshead) override;
+
+	UFUNCTION()
+	virtual void Interact(AActor* Interactor, bool bIsHead) override;
 	
 	UFUNCTION()
 	void HandleBeginOverlap(UPrimitiveComponent* OverlappedComponent,
-		AActor* OtherActor,
-		UPrimitiveComponent* OtherComp,
-		int32 OtherBodyIndex,
-		bool bFromSweep,
-		const FHitResult& SweepResult);
+							AActor* OtherActor,
+							UPrimitiveComponent* OtherComp,
+							int32 OtherBodyIndex,
+							bool bFromSweep,
+							const FHitResult& SweepResult);
 
 	UFUNCTION()
 	void ToggleCollision();
