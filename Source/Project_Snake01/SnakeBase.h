@@ -38,6 +38,9 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	float MovementSpeed;
 
+	UPROPERTY(EditDefaultsOnly)
+	bool Moving;
+
 	UPROPERTY()
 	TArray<ASnakeElementBase*> SnakeElements;
 
@@ -56,6 +59,8 @@ public:
 	void AddSnakeElement(int ElementsNum = 1);
 	UFUNCTION(BlueprintCallable)
 	void Move();
+
+	
 
 	
 	UFUNCTION(BlueprintCallable)

@@ -33,6 +33,11 @@ void ASnakeBase::AddSnakeElement(int ElementsNum )
 	for (int i = 0; i < ElementsNum; ++i)
 	{
 		FVector NewLocation(SnakeElements.Num()*ElementSize, 0, 0);
+		if (SnakeElements.Num() > 0)
+		{
+			NewLocation = SnakeElements[SnakeElements.Num() - 1]->GetActorLocation();												
+
+		}
 		FTransform NewTransform(NewLocation);
 		ASnakeElementBase* NewSnakeElem = GetWorld()->SpawnActor<ASnakeElementBase>(SnakeElementClass, NewTransform);
 		NewSnakeElem->SnakeOwner = this;   
@@ -49,6 +54,7 @@ void ASnakeBase::Move()
 {
 	FVector MovementVector(ForceInitToZero);
 	
+	Moving = false;
 
 	switch (LastMoveDirection)
 	{
@@ -91,7 +97,7 @@ void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActo
 		SnakeElements.Find(OverlappedElement, ElemIndex);
 		bool bIsFirst = ElemIndex == 0;
 		IInteractable* InteractableInterface = Cast<IInteractable>(Other);
-		UE_LOG(LogTemp, Warning, TEXT("OVERLAP WIS %s"),*Other->GetName());
+		//UE_LOG(LogTemp, Warning, TEXT("OVERLAP WIS %s"),*Other->GetName());
 		if (InteractableInterface)
 		{
 			InteractableInterface->Interact(this,  bIsFirst);

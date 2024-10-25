@@ -60,6 +60,7 @@ void ASnakeElementBase::HandleBeginOverlap(UPrimitiveComponent* OverlappedCompon
 {
 	if (IsValid(SnakeOwner))
 	{
+		
 		SnakeOwner->SnakeElementOverlap(this,OtherActor);
 	}
 }
