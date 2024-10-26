@@ -23,4 +23,26 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	virtual void OnConstruction();
+
+    // Ширина и высота сетки (количество блоков по оси X и Y)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Platform")
+    int32 GridWidth = 10;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Platform")
+    int32 GridHeight = 10;
+
+    // Размер каждого блока платформы
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Platform")
+    float BlockSize = 100.0f;
+
+    // Сетка для хранения блоков платформы
+    UPROPERTY()
+    TArray<UStaticMeshComponent*> PlatformBlocks;
+
+    
+
+    // Меш для блоков платформы
+    UPROPERTY(EditAnywhere, Category = "Platform")
+    UStaticMesh* BlockMesh;
 };
