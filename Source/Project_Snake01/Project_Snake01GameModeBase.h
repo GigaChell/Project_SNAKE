@@ -21,5 +21,10 @@ public:
 	void SpawnFood();
 	
 		UPROPERTY (EditAnywhere, BlueprintReadWrite)
-	TArray<TSubclassOf<AActor>> SpawnActorArray;
+	TArray<TSubclassOf<AActor>> SpawnFoodArray;
+
+	void SpawnBonus();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<TSubclassOf<AActor>> SpawnBonusArray;
 };
+

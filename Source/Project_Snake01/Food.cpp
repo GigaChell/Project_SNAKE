@@ -4,6 +4,7 @@
 #include "SnakeBase.h"
 
 
+
 AFood::AFood()
 {
  	
@@ -20,6 +21,14 @@ void AFood::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void AFood::Destroyed()
+{
+	// вызываем делегат и сообщает что вызов активирован
+	FoodActivated.Broadcast();
+
+	Super::Destroyed();
 }
 
 
@@ -48,11 +57,17 @@ void AFood::Interact(AActor* Interactor, bool bIsHead)
 		{
 			Snake->AddSnakeElement();
 
-			int RandomX = FMath::RandRange(-390, 390); // generation x
-			int RandomY = FMath::RandRange(-180, 180); // generation y
-			this->SetActorLocation(FVector(RandomX, RandomY, 0)); // moving food
-			Destroy();
-			
+			// Сохраняем текущие координаты для нового актора
+			int RandomX = FMath::RandRange(-700, 700);
+			int RandomY = FMath::RandRange(-1000, 1000);
+			this->SetActorLocation(FVector(RandomX, RandomY, 60)); // moving food
+
+			//FoodActivated.Broadcast();
+			// Уничтожаем текущий объект
+			//Destroy();
+
+			//// Спавним новый объект AFood на локации NewLocation
+			//GetWorld()->SpawnActor<AFood>(AFood::StaticClass(), NewLocation, FRotator::ZeroRotator);
 		}
 	}
 }
