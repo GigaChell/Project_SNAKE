@@ -2,7 +2,7 @@
 
 
 #include "SnakeElementBase.h"
-#include "Engine/Classes/Components/StaticMeshComponent.h"
+#include "Components/StaticMeshComponent.h"
 #include "SnakeBase.h" 
 
 

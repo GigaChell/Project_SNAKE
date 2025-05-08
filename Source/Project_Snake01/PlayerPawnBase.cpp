@@ -1,6 +1,6 @@
 
 #include "PlayerPawnBase.h"
-#include "Engine/Classes/Camera/CameraComponent.h"
+#include "Camera/CameraComponent.h"
 #include "SnakeBase.h"
 #include "Components/InputComponent.h"
 #include "Kismet/GameplayStatics.h"
