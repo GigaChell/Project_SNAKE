@@ -22,6 +22,9 @@ void APlayerPawnBase::BeginPlay()
 	SetActorRotation(FRotator(-90, 0, 0));
 	CreateSnakeActor();
 
+	FInputModeGameOnly InputMode; // установка фокуса сразу на игру чтобы не кликать во вьюпорт
+	UGameplayStatics::GetPlayerController(GetWorld(), 0)->SetInputMode(InputMode);
+
 }
 
 void APlayerPawnBase::Tick(float DeltaTime)
